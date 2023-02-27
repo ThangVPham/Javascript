@@ -52,9 +52,9 @@ const pokemonDownloader = () => {
   return download;
 };
 
-const getPokemonInfo = pokemonDownloader();
-
 const getInfo = async (name) => {
   const pokemon = await getPokemonInfo(name);
   console.log(pokemon);
 };
+
+const getPokemonInfo = pokemonDownloader();

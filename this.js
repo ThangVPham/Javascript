@@ -1,4 +1,5 @@
 //The context for this is not yet determined. It is dynamically assign to the object calling this method. The context can be assigned using 'bind','call', and 'apply' method
+//In ARROW function, the context of 'this' is INHERIT FROM THE PARENT of where the function is defined.
 console.log(Object.getOwnPropertyNames(Object.prototype));
 const alex = {
   name: "Alex",
@@ -18,7 +19,7 @@ const alex = {
 //The Alex object calling greet method, passing its name property to the greet function.
 alex.greet(); //'Alex says hello!'
 
-//The friend object calling greet method, passing its properties to the greet function. The friend object does not have any property called 'name'.
+//The 'friend' object inside of 'alex' calling greet method, passing its properties to the greet function. The friend object does not have any property called 'name'.
 alex.friend.greet(); //'undefined says hello!'
 
 //The method friend.greet binds to an object containing the property 'name' of value 'Lana'.
@@ -69,3 +70,13 @@ book.characters.list.call(book2.characters); // Temporarily binding book2 charac
 
 book.characters.list = book.characters.list.bind(book2.characters); //Permanently binding book2 characters to book character list method
 book.characters.list();
+
+const employee = {
+  role: "Developer",
+  baseSalary: 60000,
+  getThis: function () {
+    return (() => this)();
+  },
+};
+
+console.log(employee.getThis());
